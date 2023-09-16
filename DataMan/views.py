@@ -23,7 +23,7 @@ def data_list(request):
                 instance.UniqueID = f'SIH1016FS{instance.id:03}'
                 instance.bucket_url=f'https://zwxpudmuwltonzohjbse.supabase.co/storage/v1/object/public/sihbucketbackend/{instance.UniqueID}/'
                 instance.save() 
-            #create_supabase_folder(instance.UniqueID)
+            create_supabase_folder(instance.UniqueID)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
