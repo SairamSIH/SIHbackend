@@ -22,13 +22,13 @@ def retrieve_supabase_folder(UniqueID):
 class mainUserCentral(models.Model):
     name=models.CharField(max_length=30, null=False, blank=False)
     age=models.IntegerField(null=False, blank=False)
-    gender=models.CharField(null=False, blank=False)
+    gender=models.CharField(max_length=10, null=False, blank=False)
     email=models.EmailField(null=False, blank=False)
     phone=models.CharField(max_length=20 ,null=False, blank=False)
     address= models.CharField(max_length=50, null=False, blank=False)
     bucket_url=models.URLField(null=True, blank=False)
     password=models.CharField(max_length=25, null=True, blank=False)
-    UniqueID=models.CharField(null=True, blank=True, default='')
+    UniqueID=models.CharField(max_length=15, null=True, blank=True, default='')
     
     """def save(self, *args, **kwargs):
         if not self.pk:
