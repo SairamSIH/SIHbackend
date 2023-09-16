@@ -8,5 +8,5 @@ def create_supabase_folder(unique_id):
             pass 
     except:
         pass
-    vid_res = clients.storage.from_('sihbucketbackend').upload(f'{unique_id}/Videos/supabasetry.txt', file='DataMan\supabasetry.txt')
-    docs_res = clients.storage.from_('sihbucketbackend').upload(f'{unique_id}/Documents/supabasetry.txt', file='DataMan\supabasetry.txt')
+    vid_res = clients.storage.from_('sihbucketbackend').upload(f'{unique_id}/Videos/supabasetry.txt', file='supabasetry.txt')
+    docs_res = clients.storage.from_('sihbucketbackend').upload(f'{unique_id}/Documents/supabasetry.txt', file='supabasetry.txt')
