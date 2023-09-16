@@ -27,8 +27,9 @@ class mainUserCentral(models.Model):
     phone=models.CharField(max_length=20 ,null=False, blank=False)
     address= models.CharField(max_length=50, null=False, blank=False)
     bucket_url=models.URLField(null=True, blank=False)
+    password=models.CharField(max_length=25, null=True, blank=False)
     UniqueID=models.CharField(null=True, blank=True, default='')
-    password=models.CharField(max_length=25, null=False, blank=False)
+    
     """def save(self, *args, **kwargs):
         if not self.pk:
             self.UniqueID = None
