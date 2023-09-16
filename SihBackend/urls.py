@@ -24,5 +24,5 @@ from DataMan.views import data_list,fetch_single_data
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/main-user-central/',data_list),
-    path('api/main-user-central/<str:name>/<str:email>',fetch_single_data)
+    path('api/main-user-central/<str:UniqueID>/<str:password>',fetch_single_data)
 ]

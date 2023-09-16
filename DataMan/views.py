@@ -30,9 +30,9 @@ def data_list(request):
 
 #The api for single user request. Valid for get request only.
 @api_view(['GET'])
-def fetch_single_data(request, name, email):
+def fetch_single_data(request, UniqueID, password):
     #obj=mainUserCentral.objects.filter(name=name,  email=email)
-    obj = get_object_or_404(mainUserCentral, name=name, email=email)
+    obj = get_object_or_404(mainUserCentral, UniqueID=UniqueID, password=password)
     serializer=MainUserCentralSerializer(obj)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
