@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['sihbackendsit.onrender.com']
 
+CSRF_TRUSTED_ORIGINS = ['https://sihbackendsit.onrender.com']
+
 
 # Application definition
 
