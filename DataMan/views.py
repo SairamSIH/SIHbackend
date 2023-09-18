@@ -36,6 +36,45 @@ def fetch_single_data(request, UniqueID, password):
     serializer=MainUserCentralSerializer(obj)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
+#The api for managing video uploads
+@api_view(['POST','GET'])
+def videoMan(request, UniqueID):
+    if request.method=='POST':
+        try:
+            video_file = request.FILES.get('video_file', None)
+            if video_file:
+                if isinstance(video_file, InMemoryUploadedFile):
+                    video_data = video_file.read()
+                    destination = f'{UniqueID}/Videos/{video_file.name}'
+                    resp = upload_video_to_bucket(destination, video_data)
+                    print(resp)
+                    if resp.status_code == 200:
+                        return Response({'message': 'Video uploaded successfully'}, status=status.HTTP_201_CREATED)
+                    else:
+                        return Response({'message': 'Failed to upload video to Supabase'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                else:
+                    return Response({'message': 'Invalid file format'}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({'message': 'No file provided'}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({'message': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    if request.method=='GET':
+        try:
+            data = list_user_videos_bucket(UniqueID)
+            return Response(data, status=status.HTTP_200_OK)
+        except:
+            return Response(data, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+#The api for getting the public url for a video file
+@api_view(['GET'])
+def get_video_url(request, UniqueID, file_name):
+    try:
+        data = get_video_url_from_supabase(UniqueID, file_name)
+    except:
+        return Response({"data":"error"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    return Response({"url" : data}, status=status.HTTP_200_OK)
+
+#The API for document manager
 @api_view(['POST','GET'])
 def docMan(request, UniqueID):
     if request.method=='POST':
