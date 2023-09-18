@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from DataMan.views import data_list,fetch_single_data
+from DataMan.views import data_list,fetch_single_data,videoMan,get_video_url,docMan,get_document_url
 
 #router = DefaultRouter()
 #router.register(r'main-user-central', MainUserCentralViewSet)
@@ -24,5 +24,9 @@ from DataMan.views import data_list,fetch_single_data
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/main-user-central/',data_list),
-    path('api/main-user-central/<str:UniqueID>/<str:password>',fetch_single_data)
+    path('api/main-user-central/<str:UniqueID>/<str:password>',fetch_single_data),
+    path('api/videoMan/<str:UniqueID>',videoMan),
+    path('api/videoMan/get/<str:UniqueID>/<str:file_name>',get_video_url),
+    path('api/docMan/<str:UniqueID>',docMan),
+    path('api/docMan/get/<str:UniqueID>/<str:file_name>',get_document_url)
 ]
