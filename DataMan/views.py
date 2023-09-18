@@ -1,4 +1,5 @@
 from django.shortcuts import render,get_object_or_404
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from rest_framework import viewsets
 from .models import mainUserCentral
 from .serializers import MainUserCentralSerializer
